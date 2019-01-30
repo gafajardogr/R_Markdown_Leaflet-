@@ -1,0 +1,40 @@
+---
+title: "R Markdown and Leaflet - Week 2 Assignment"
+author: "German Fajardo G"
+date: "29 de enero de 2019"
+output: html_document
+runtime: shiny
+resource_files:
+- Week2Assignment.html
+---
+
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+#Review criteria
+
+The rubric contains the following two questions:
+Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+Does the web page feature an interactive map that appears to have been created with Leaflet?
+
+
+```{r io, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(leaflet)
+
+set.seed(123456)
+df <- data.frame(latitude = sample(seq(41.5, 42.5, by = 0.01), 50),
+                 longitude = sample(seq(-89.0, -88.0, by = 0.01), 50),
+                 value = seq(1, 50))
+
+
+df %>%
+leaflet() %>%
+addTiles() %>%
+addCircleMarkers(radius = 5, group = "circlemarkers") %>% addMarkers( lng=-88.0, lat=42.0, popup="Properties in Chicago")
+
+```
